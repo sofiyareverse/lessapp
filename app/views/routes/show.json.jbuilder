@@ -1,2 +1,2 @@
-json.partial! "routes/route", route: @route
+json.partial! 'routes/route', route: @route
 s
