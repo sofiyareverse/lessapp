@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @carrige.carrige_type %>
+</p>
+
+<p>
+  <strong>Up-sits:</strong>
+  <%= @carrige.up_sits %>
+</p>
+
+<p>
+  <strong>Down-sits:</strong>
+  <%= @carrige.down_sits %>
+</p>
+
+<p>
+  <strong>Train:</strong>
+  <%= @carrige.train.number %>
+</p>
+
+<%= link_to 'Edit', edit_carrige_path(@carrige) %> |
+<%= link_to 'Back', carriges_path %>

@@ -1,0 +1,30 @@
+<%= form_with(model: carrige, local: true) do |form| %>
+  <% if carrige.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carrige.errors.count, "error") %> prohibited this carrige from being saved:</h2>
+
+      <ul>
+      <% carrige.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.radio_button :carrige_type, 'reserved', :checked => true %> 
+    <%= label :carrige_type, 'reserved' %>
+    <%= form.radio_button :carrige_type, 'compartment' %>
+    <%= label :carrige_type, 'compartment' %>
+    <%= form.label :up_sits %>
+    <%= form.number_field :up_sits %>
+    <%= form.label :down_sits %>
+    <%= form.number_field :down_sits %>
+    <%= form.label :train_id %>
+    <%= form.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

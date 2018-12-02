@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер поезда:</strong>
   <%= @train.number %>
 </p>
 
@@ -12,6 +12,29 @@
   <p>
     <%= @train.route.name %>
   </p>
+<% end %>
+
+<% if @train.carriges.nil? %>
+  <p>Вагонов нет</p>
+<% else %>
+    <table>
+      <thead>
+      <tr>
+        <th>Тип вагона</th>
+        <th>Верхние места</th>
+        <th>Нижние места</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @train.carriges.each do |carrige| %>
+          <tr>
+            <td><%= carrige.carrige_type %></td>
+            <td><%= carrige.up_sits %></td>
+            <td><%= carrige.down_sits %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 <% end %>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
