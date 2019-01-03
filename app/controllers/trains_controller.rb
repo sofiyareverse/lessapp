@@ -54,6 +54,6 @@ class TrainsController < ApplicationController
   end
 
   def train_params
-    params.require(:train).permit(:number, :route_id)
+    params.require(:train).permit(:number, :route_id, :ordering)
   end
 end

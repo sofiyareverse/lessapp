@@ -10,12 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181202121303) do
+ActiveRecord::Schema.define(version: 20190103113959) do
 
   create_table "carriges", force: :cascade do |t|
+    t.integer "number"
     t.string "carrige_type"
     t.integer "up_sits"
     t.integer "down_sits"
+    t.integer "side_up_sits"
+    t.integer "side_down_sits"
+    t.integer "sitting_sits"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "train_id"
@@ -33,6 +37,7 @@ ActiveRecord::Schema.define(version: 20181202121303) do
   create_table "railway_stations_routes", id: false, force: :cascade do |t|
     t.integer "railway_station_id", null: false
     t.integer "route_id", null: false
+    t.integer "position"
     t.index [nil, nil], name: "index_railway_stations_routes_on_stations_id_and_routes_id"
   end
 
@@ -51,14 +56,7 @@ ActiveRecord::Schema.define(version: 20181202121303) do
     t.index ["train_id"], name: "index_tickets_on_train_id"
   end
 
-  create_table "trains", force: :cascade do |t|
-    t.integer "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "route_id"
-    t.integer "current_station_id"
-    t.index ["current_station_id"], name: "index_trains_on_current_station_id"
-    t.index ["route_id"], name: "index_trains_on_route_id"
-  end
+# Could not dump table "trains" because of following StandardError
+#   Unknown type 'bolean' for column 'ordering'
 
 end

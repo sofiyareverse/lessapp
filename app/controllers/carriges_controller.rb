@@ -58,7 +58,10 @@ class CarrigesController < ApplicationController
       :train_id,
       :carrige_type,
       :up_sits,
-      :down_sits
+      :down_sits,
+      :side_up_sits,
+      :side_down_sits,
+      :sitting_sits
     )
   end
 end
