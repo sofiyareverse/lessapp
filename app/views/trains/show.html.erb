@@ -14,27 +14,52 @@
   </p>
 <% end %>
 
-<% if @train.carriges.nil? %>
-  <p>Вагонов нет</p>
-<% else %>
-    <table>
+<% if @train.carriges.present? %>
+  <table>
       <thead>
       <tr>
+        <th>Номер вагона</th>
         <th>Тип вагона</th>
-        <th>Верхние места</th>
-        <th>Нижние места</th>
+        <th>Места</th>
       </tr>
       </thead>
       <tbody>
-        <% @train.carriges.each do |carrige| %>
+        <% @train.ordered_carriges.each do |carrige| %>
           <tr>
+            <td><%= link_to carrige.number, carrige_path(id: carrige.id) %></td>          
             <td><%= carrige.carrige_type %></td>
-            <td><%= carrige.up_sits %></td>
-            <td><%= carrige.down_sits %></td>
+            <td>
+              <p>
+                <strong>Up-sits:</strong>
+                <%= carrige.up_sits %>
+              </p>
+
+              <p>
+                <strong>Down-sits:</strong>
+                <%= carrige.down_sits %>
+              </p>
+
+              <p>
+                <strong>Side-up-sits:</strong>
+                <%= carrige.side_up_sits %>
+              </p>
+
+              <p>
+                <strong>Side-down-sits:</strong>
+                <%= carrige.side_down_sits %>
+              </p>
+
+              <p>
+                <strong>Sitting-sits:</strong>
+                <%= carrige.sitting_sits %>
+              </p>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+<% else %>
+  <p>Вагонов нет</p>
 <% end %>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |

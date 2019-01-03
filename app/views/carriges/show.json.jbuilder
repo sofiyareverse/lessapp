@@ -1,1 +1,1 @@
-json.partial! "carriges/carrige", carrige: @carrige
+json.partial! 'carriges/carrige', carrige: @carrige

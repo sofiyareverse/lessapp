@@ -16,6 +16,10 @@
     <%= form.number_field :number, id: :train_number %>
     <%= form.label :route_id %>
     <%= form.collection_select :route_id, Route.all, :id, :name %>
+    <%= form.label "С головы поезда" %>
+    <%= form.radio_button :order, true %>
+    <%= form.label "С хвоста поезда" %>
+    <%= form.radio_button :order, false %>
   </div>
 
   <div class="actions">

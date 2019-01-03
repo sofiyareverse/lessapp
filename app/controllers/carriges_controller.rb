@@ -1,19 +1,17 @@
 class CarrigesController < ApplicationController
-  before_action :set_carrige, only: [:show, :edit, :update, :destroy]
+  before_action :set_carrige, only: %i[show edit update destroy]
 
   def index
     @carriges = Carrige.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @carrige = Carrige.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @carrige = Carrige.new(carrige_params)
@@ -50,16 +48,20 @@ class CarrigesController < ApplicationController
   end
 
   private
-    def set_carrige
-      @carrige = Carrige.find(params[:id])
-    end
 
-    def carrige_params
-      params.require(:carrige).permit(
-        :train_id,
-        :carrige_type,
-        :up_sits,
-        :down_sits,
-      )
-    end
+  def set_carrige
+    @carrige = Carrige.find(params[:id])
+  end
+
+  def carrige_params
+    params.require(:carrige).permit(
+      :train_id,
+      :carrige_type,
+      :up_sits,
+      :down_sits,
+      :side_up_sits,
+      :side_down_sits,
+      :sitting_sits
+    )
+  end
 end
