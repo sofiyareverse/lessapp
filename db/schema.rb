@@ -10,21 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181201141304) do
+ActiveRecord::Schema.define(version: 20181201194250) do
+
+  create_table "passengers", force: :cascade do |t|
+  end
 
   create_table "railway_stations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "railway_stations_routes", id: false, force: :cascade do |t|
+    t.integer "railway_station_id", null: false
+    t.integer "route_id", null: false
+    t.index [nil, nil], name: "index_railway_stations_routes_on_stations_id_and_routes_id"
+  end
+
   create_table "routes", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "passenger_id"
+    t.integer "train_id"
+    t.integer "first_station_id"
+    t.integer "last_station_id"
+    t.index ["first_station_id"], name: "index_tickets_on_first_station_id"
+    t.index ["last_station_id"], name: "index_tickets_on_last_station_id"
+    t.index ["passenger_id"], name: "index_tickets_on_passenger_id"
+    t.index ["train_id"], name: "index_tickets_on_train_id"
   end
 
   create_table "trains", force: :cascade do |t|
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "route_id"
+    t.integer "current_station_id"
+    t.index ["current_station_id"], name: "index_trains_on_current_station_id"
+    t.index ["route_id"], name: "index_trains_on_route_id"
   end
 
 end
