@@ -1,5 +1,5 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: %i[show edit update destroy]
+  before_action :set_railway_station, only: %i[show edit update destroy update_position]
 
   def index
     @railway_stations = RailwayStation.all
@@ -47,6 +47,13 @@ class RailwayStationsController < ApplicationController
     end
   end
 
+
+  def update_position
+    @route = Route.find(params[:route_id])
+    @railway_station.update_position(@route, params[:position])
+    redirect_to @route
+  end
+
   private
 
   def set_railway_station
@@ -54,6 +61,6 @@ class RailwayStationsController < ApplicationController
   end
 
   def railway_station_params
-    params.fetch(:railway_station, {})
+    params.require(:railway_station).permit(:name)
   end
 end

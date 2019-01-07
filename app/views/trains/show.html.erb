@@ -62,5 +62,7 @@
   <p>Вагонов нет</p>
 <% end %>
 
+<%= link_to 'New carrige', new_train_carrige_path(train_id: @train.id) %><br/>
+
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

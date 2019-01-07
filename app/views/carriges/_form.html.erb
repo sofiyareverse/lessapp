@@ -1,4 +1,4 @@
-<%= form_with(model: carrige, local: true) do |form| %>
+<%= form_for [@train, @carrige] do |form| %>
   <% if carrige.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(carrige.errors.count, "error") %> prohibited this carrige from being saved:</h2>

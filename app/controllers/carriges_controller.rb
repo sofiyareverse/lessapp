@@ -1,5 +1,6 @@
 class CarrigesController < ApplicationController
   before_action :set_carrige, only: %i[show edit update destroy]
+  before_action :set_train, only: %i[new create]
 
   def index
     @carriges = Carrige.all
@@ -8,7 +9,7 @@ class CarrigesController < ApplicationController
   def show; end
 
   def new
-    @carrige = Carrige.new
+    @carrige = @train.carriges.new
   end
 
   def edit; end
@@ -18,7 +19,8 @@ class CarrigesController < ApplicationController
 
     respond_to do |format|
       if @carrige.save
-        format.html { redirect_to @carrige, notice: 'Carrige was successfully created.' }
+        format.html { redirect_to train_carrige_path(train_id: @carrige.train_id, id: @carrige.id),
+          notice: 'Carrige was successfully created.' }
         format.json { render :show, status: :created, location: @carrige }
       else
         format.html { render :new }
@@ -48,6 +50,10 @@ class CarrigesController < ApplicationController
   end
 
   private
+
+  def set_train
+    @train = Train.find(params[:train_id])
+  end
 
   def set_carrige
     @carrige = Carrige.find(params[:id])

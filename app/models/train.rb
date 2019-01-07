@@ -8,10 +8,10 @@ class Train < ApplicationRecord
   has_many :carriges
 
   def ordered_carriges
-    if self.ordering
-      self.carriges.order("number ASC")
+    if ordering
+      carriges.order('number ASC')
     else
-      self.carriges.order("number DESC")
+      carriges.order('number DESC')
     end
   end
 end

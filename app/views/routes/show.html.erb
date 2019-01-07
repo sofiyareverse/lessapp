@@ -5,27 +5,62 @@
   <%= @route.name %>
 </p>
 
-<% if @route.trains.empty? %>
-  <p>По данному маршруту поезда не ходят.</p>
-<% else %>
-  <p>Маршрут включает следующие поезда:</p>
-  <ul>
-    <% @route.trains.each do |train| %>
-      <li><%= train.number %></li>
-    <% end %>
-  </ul>
-<% end %>
+<table>
+  <thead>
+  <tr>
+    <th>Поезда</th>
+  </tr>
+  </thead>
+  <tbody>
+    <td>
+      <% if @route.trains.present? %>
+        <% @route.trains.each do |train| %>
+          <tr>
+            <td>        
+              <%= train.number %>
+            </td>
+          </tr> 
+        <% end %>
+      <% else %>
+        <tr>
+          <td>-</td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
 
-<% if @route.railway_stations.empty? %>
-  <p>Cтанций в маршруте нет.</p>
-<% else %>
-  <p>Маршрут включает следующие номера станций:</p>
-  <ul>
-    <% @route.railway_stations.each do |station| %>
-      <li><%= stations.id %></li>
-    <% end %>
-  </ul>
-<% end %>
+<table>
+  <thead>
+  <tr>
+    <th>Станции</th>
+  </tr>
+  </thead>
+  <tbody>
+    <td>
+    <tr>
+      <% if @route.railway_stations.present? %>
+        <% @route.railway_stations.each do |station| %>
+          <tr>
+            <td>        
+              <%= station.id %>
+            </td>
+            <td>        
+              <%= form_tag update_position_railway_station_path(station), method: :patch do %>
+                <%= number_field_tag :position %>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag "Change" %>
+              <% end %>
+            </td>
+          </tr> 
+        <% end %>
+      <% else %>
+        <tr>
+          <td>-</td>
+        </tr>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>
