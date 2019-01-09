@@ -1,17 +1,36 @@
 Rails.application.routes.draw do
-  resources :trains do
-    resources :carriges
+  devise_for :passengers, path: 'passengers'
+  devise_for :admins
+
+  namespace :admins do
+    resources :trains do
+      resources :carriges
+    end
+
+    resources :railway_stations do
+      patch :update_position, on: :member
+    end
+
+    resources :routes
+
+    resource :search, only: :show do
+      post :show
+    end
+  
+    resources :tickets
   end
 
-  resources :railway_stations do
-    patch :update_position, on: :member
+  namespace :passenger do
+    resource :search, only: :show do
+      post :show
+    end
+  
+    resources :tickets
   end
 
   resource :search, only: :show do
     post :show
   end
 
-  resources :tickets
-
-  resources :routes
+  root to: 'search#show'
 end

@@ -1,0 +1,6 @@
+<strong>Ticket in train number: </strong><%= @ticket.train.number %><br/>
+<strong>Buyed by user: </strong><%= @ticket.passenger.name %><br/>
+<strong>For: </strong><%= @ticket.passport_data %><br/>
+<strong>With initials: </strong><%= @ticket.initials %><br/>
+<%= link_to 'Edit a ticket', edit_admins_ticket_path(@ticket) %>
+<%= link_to 'Delete a ticket', admins_ticket_path(@ticket), method: :delete %>

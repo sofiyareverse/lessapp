@@ -1,5 +1,4 @@
-<h1>Tickets:</h1>
-<%= form_for @ticket, url: passengers_tickets_path(id: @train.id) do |f| %>
+<%= form_for @ticket, url: admins_ticket_path do |f| %>
   <% if @ticket.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this railway_station from being saved:</h2>
